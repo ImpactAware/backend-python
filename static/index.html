@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <link rel="icon" href="./favicon.ico">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="theme-color" content="#000000">
+      <link rel="apple-touch-icon" href="./logo192.png">
+      <title>Impact Aware</title>
+      <script>
+         window.onload = doFunc;
+         async function doFunc() {
+           
+           let node1Name = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(3) > div:nth-child(1)');
+           let node1Status = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(3) > div:nth-child(2)');
+           let node1Hits = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(3) > div:nth-child(3)');
+           let node1Time = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(3) > div:nth-child(4)');
+
+           let node2Name = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(5) > div:nth-child(1)');
+           let node2Status = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(5) > div:nth-child(2)');
+           let node2Hits = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(5) > div:nth-child(3)');
+           let node2Time = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(5) > div:nth-child(4)');
+
+           let node3Name = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(7) > div:nth-child(1)');
+           let node3Status = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(7) > div:nth-child(2)');
+           let node3Hits = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(7) > div:nth-child(3)');
+           let node3Time = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(7) > div:nth-child(4)');
+
+           let node4Name = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(9) > div:nth-child(1)');
+           let node4Status = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(9) > div:nth-child(2)');
+           let node4Hits = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(9) > div:nth-child(3)');
+           let node4Time = document.querySelector('#root > div > main > section > div.events__table > div:nth-child(9) > div:nth-child(4)');
+
+           while(true) {
+             let response = await fetch('http://127.0.0.1:5000/nodes');
+             let parsedResponse = await response.json();
+
+             node1Name.innerHTML = parsedResponse[0]['device_id'];
+             if(parsedResponse[0]['connected'] === true) {
+               node1Status.innerHTML = 'Online';
+               node1Status.classList.remove("red-text");
+               node1Status.classList.add("green-text");
+             }
+            if(parsedResponse[0]['connected'] === false) {
+               node1Status.innerHTML = 'Offline';
+               node1Status.classList.remove("green-text");
+               node1Status.classList.add("red-text");
+            }
+             node1Hits.innerHTML = parsedResponse[0]['hits'];
+             if(parsedResponse[0]['hits'] <= 0) {
+               node1Hits.classList.remove("yellow-text");
+               node1Hits.classList.remove("red-text");
+               node1Hits.classList.add("green-text");
+             }
+             if(parsedResponse[0]['hits'] > 1) {
+               node1Hits.classList.remove("red-text");
+               node1Hits.classList.remove("green-text");
+               node1Hits.classList.add("yellow-text");
+             }
+             if(parsedResponse[0]['hits'] > 10) {
+               node1Hits.classList.remove("yellow-text");
+               node1Hits.classList.remove("green-text");
+               node1Hits.classList.add("red-text");
+             }
+             node1Time.innerHTML = parsedResponse[0]['last_hit'];
+
+             node2Name.innerHTML = parsedResponse[1]['device_id'];
+             if(parsedResponse[1]['connected'] === true) {
+               node2Status.innerHTML = 'Online';
+               node2Status.classList.remove("red-text");
+               node2Status.classList.add("green-text");
+             }
+            if(parsedResponse[1]['connected'] === false) {
+               node2Status.innerHTML = 'Offline';
+               node2Status.classList.remove("green-text");
+               node2Status.classList.add("red-text");
+             }             
+             node2Hits.innerHTML = parsedResponse[1]['hits'];
+             if(parsedResponse[1]['hits'] <= 0) {
+               node2Hits.classList.remove("yellow-text");
+               node2Hits.classList.remove("red-text");
+               node2Hits.classList.add("green-text");
+             }
+             if(parsedResponse[1]['hits'] > 1) {
+               node2Hits.classList.remove("red-text");
+               node2Hits.classList.remove("green-text");
+               node2Hits.classList.add("yellow-text");
+             }
+             if(parsedResponse[1]['hits'] > 10) {
+               node2Hits.classList.remove("yellow-text");
+               node2Hits.classList.remove("green-text");
+               node2Hits.classList.add("red-text");
+             }
+             node2Time.innerHTML = parsedResponse[1]['last_hit'];
+
+             node3Name.innerHTML = parsedResponse[2]['device_id'];
+             if(parsedResponse[2]['connected'] === true) {
+               node3Status.innerHTML = 'Online';
+               node3Status.classList.remove("red-text");
+               node3Status.classList.add("green-text");
+             }
+            if(parsedResponse[2]['connected'] === false) {
+               node3Status.innerHTML = 'Offline';
+               node3Status.classList.remove("green-text");
+               node3Status.classList.add("red-text");
+             }  
+             node3Hits.innerHTML = parsedResponse[2]['hits'];
+             if(parsedResponse[2]['hits'] <= 0) {
+               node3Hits.classList.remove("yellow-text");
+               node3Hits.classList.remove("red-text");
+               node3Hits.classList.add("green-text");
+             }
+             if(parsedResponse[2]['hits'] > 1) {
+               node3Hits.classList.remove("red-text");
+               node3Hits.classList.remove("green-text");
+               node3Hits.classList.add("yellow-text");
+             }
+             if(parsedResponse[2]['hits'] > 10) {
+               node3Hits.classList.remove("yellow-text");
+               node3Hits.classList.remove("green-text");
+               node3Hits.classList.add("red-text");
+             }
+             node3Time.innerHTML = parsedResponse[2]['last_hit'];
+
+             node4Name.innerHTML = parsedResponse[3]['device_id'];
+             if(parsedResponse[3]['connected'] === true) {
+               node4Status.innerHTML = 'Online';
+               node4Status.classList.remove("red-text");
+               node4Status.classList.add("green-text");
+             }
+            if(parsedResponse[3]['connected'] === false) {
+               node4Status.innerHTML = 'Offline';
+               node4Status.classList.remove("green-text");
+               node4Status.classList.add("red-text");
+             }  
+             node4Hits.innerHTML = parsedResponse[3]['hits'];
+             if(parsedResponse[3]['hits'] <= 0) {
+               node4Hits.classList.remove("yellow-text");
+               node4Hits.classList.remove("red-text");
+               node4Hits.classList.add("green-text");
+             }
+             if(parsedResponse[3]['hits'] > 1) {
+               node4Hits.classList.remove("red-text");
+               node4Hits.classList.remove("green-text");
+               node4Hits.classList.add("yellow-text");
+             }
+             if(parsedResponse[3]['hits'] > 10) {
+               node4Hits.classList.remove("yellow-text");
+               node4Hits.classList.remove("green-text");
+               node4Hits.classList.add("red-text");
+             }
+             node4Time.innerHTML = parsedResponse[3]['last_hit'];
+
+             await new Promise(r => setTimeout(r, 1000));
+           }
+         }
+      </script>
+      <style>
+         body {
+         margin: 0;
+         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+         -webkit-font-smoothing: antialiased;
+         -moz-osx-font-smoothing: grayscale;
+         background-color: #334155;
+         }
+         html {
+         background-color: #334155;
+         }
+         code {
+         font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+         }
+         header {
+         background-color: #171717;
+         color: white;
+         display: flex;
+         align-items: center;
+         padding: 1rem;
+         }
+         .header__logoimage {
+         margin-left: 13rem;
+         }
+         .events {
+         font-size: 1.2rem;
+         margin-left: 10rem;
+         margin-right: 10rem;
+         margin-top: 5rem;
+         background-color: #171717;
+         color: white;
+         padding: 2rem;
+         }
+         .events__title {
+         display: flex;
+         flex-direction: column;
+         width: 100%;
+         align-items: center;
+         font-size: 1.5rem;
+         margin-bottom: 1rem;
+         }
+         .events__table__row {
+         display: grid;
+         grid-template-columns: 1fr 1fr 1fr 1fr;
+         font-weight: bold;
+         padding: 0.5rem;
+         }
+         h2 {
+         font-weight: 900;
+         }
+         .red-text {
+         color: #FCA5A5;
+         }
+         .green-text {
+         color: green;
+         }
+         .yellow-text {
+         color: #FCD34D;
+         }
+      </style>
+      <style>.App {
+         text-align: center;
+         }
+         .App-logo {
+         height: 40vmin;
+         pointer-events: none;
+         }
+         @media (prefers-reduced-motion: no-preference) {
+         .App-logo {
+         animation: App-logo-spin infinite 20s linear;
+         }
+         }
+         .App-header {
+         background-color: #282c34;
+         min-height: 100vh;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         font-size: calc(10px + 2vmin);
+         color: white;
+         }
+         .App-link {
+         color: #61dafb;
+         }
+         @keyframes App-logo-spin {
+         from {
+         transform: rotate(0deg);
+         }
+         to {
+         transform: rotate(360deg);
+         }
+         }
+      </style>
+      <style type="text/css">.c1-ui-state-hover {background-color:yellow !important; padding:5px !important }</style>
+   </head>
+   <body>
+      <div id="root">
+         <div>
+            <header><img class="header__logoimage" src="./logo.svg" alt="impact aware logo"></header>
+            <main>
+               <section class="events">
+                  <div class="events__title">
+                     <h2> Your City is <span class="events__status yellow-text "> Under Seige </span> </h2>
+                     <small> Take Shelter </small>
+                  </div>
+                  <br />
+                  <div class="events__table">
+                     <div class="events__table__row" style="font-size: 1.2em;">
+                        <div class="events__table__row__data">Node Name</div>
+                        <div class="events__table__row__data">Status</div>
+                        <div class="events__table__row__data">Hits</div>
+                        <div class="events__table__row__data">Last Hit Time</div>
+                     </div>
+                     <hr>
+                     <div class="events__table__row">
+                        <div class="events__table__row__data">NULL</div>
+                        <div class="events__table__row__data">NULL</div>
+                        <div class="events__table__row__data">NULL</div>
+                        <div class="events__table__row__data">NULL</div>
+                     </div>
+                     <hr>
+                     <div class="events__table__row">
+                        <div class="events__table__row__data">NULL</div>
+                        <div class="events__table__row__data">NULL</div>
+                        <div class="events__table__row__data">NULL</div>
+                        <div class="events__table__row__data">NULL</div>
+                     </div>
+                     <hr>
+                     <div class="events__table__row">
+                        <div class="events__table__row__data">NULL</div>
+                        <div class="events__table__row__data">NULL</div>
+                        <div class="events__table__row__data">NULL</div>
+                        <div class="events__table__row__data">NULL</div>
+                     </div>
+                     <hr>
+                     <div class="events__table__row">
+                        <div class="events__table__row__data">NULL</div>
+                        <div class="events__table__row__data">NULL</div>
+                        <div class="events__table__row__data">NULL</div>
+                        <div class="events__table__row__data">NULL</div>
+                     </div>
+                     <hr>
+                  </div>
+               </section>
+            </main>
+         </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <br />
+   </body>
+</html>
